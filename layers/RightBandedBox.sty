@@ -16,6 +16,7 @@
         %Multiple concatenated boxes	 	  	
         \foreach[count=\i,%
                  evaluate=\i as \xlabel using {array({\boxlabels},\i-1)},% 
+                 evaluate=\j as \fs using {array({\fsizes},\i-1)},%
                  evaluate=\unscaledx as \k using {\unscaledx*\scale+\prev}, remember=\k as \prev (initially 0)] 
                  \unscaledx in \cubex
         {
@@ -50,7 +51,7 @@
                 (d) -- (a) -- (b) -- (c) -- cycle     
                 (d) -- (a) -- (h) -- (e) -- cycle;            
             	
-            \path (b) edge ["\xlabel"',midway] (c);
+            \path (b) edge [align=center,"\xlabel\\{\footnotesize \fs}"',midway] (c);
             
             \xdef\LastEastx{\k} %\k persists as \LastEastx after loop 
         }%Loop ends
@@ -109,6 +110,7 @@
     ylabel/.store       in=\ylabel,
     zlabel/.store       in=\zlabels,
     caption/.store      in=\caption,
+    fsize/.store        in=\fsizes,
     name/.store         in=\name,
     fill/.store         in=\fill,
     bandfill/.store     in=\bandfill,
@@ -125,6 +127,7 @@
     xlabel={{"","","","","","","","","",""}},
     ylabel=,
     zlabel=,
+    fsize={{"","","","","","","","","",""}},
     caption=,
     name=,
 }
